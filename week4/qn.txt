@@ -1,0 +1,5 @@
+1. check if a numbe is odd/even
+2. check if year is leap
+3. find factorial of a number
+4. swap 2 numbers
+
