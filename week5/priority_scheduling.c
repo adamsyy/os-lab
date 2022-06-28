@@ -19,7 +19,7 @@ int main()
  printf("\n enter the no of procss..\n");
  scanf("%d",&n);
  p=(sp*)malloc(sizeof(sp));
- printf("enter the burst time and poriority:\n");
+ printf("enter the burst time and priority:\n");
  for(i=0;i<n;i++)
  {
    printf("process%d:",i+1);
@@ -34,7 +34,7 @@ int main()
  if(p[i].pri>p[j].pri)
  {
  t=p[i];
- p[i]=p[j];
+ p[i]=p[ j];
  p[j]=t;
  }
  }
@@ -45,10 +45,13 @@ int main()
    tbm+=p[i].btime;
    printf("\n%d\t\t%d",p[i].pno,p[i].btime);
    printf("\t\t%d\t\t%d",p[i].wtime,p[i].wtime+p[i].btime);
-   }
+   } 
  totttime=tbm+totwtime;
  printf("\n total wating time :%d",totwtime);
  printf("\naverage wating time:%f",(float)totwtime/n);
  printf("\n total turnaround time:%d",totttime);
  printf("\n avg turnaround time:%f",(float)totttime/n);
 }
+
+
+                                                                                                
