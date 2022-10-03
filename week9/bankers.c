@@ -68,7 +68,7 @@ int main()
         if (f[i] == 0)
         {
             flag = 0;
-            printf("The following system is not safe");
+            printf("System is not safe");
             break;
         }
     }
