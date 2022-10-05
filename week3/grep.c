@@ -1,57 +1,20 @@
 #include<stdio.h>
-#include<unistd.h>
-#include<stdlib.h>
-#include <sys/types.h> 
-#include <sys/stat.h>
-#include <unistd.h>
-#include<string.h>
-#include <fcntl.h>
-int count=0;
-void match_pattern(char *argv[])
+#include<dirent.h>
+int main()
 {
-    int fd,r,j=0;
-
-    char temp,line[100];
-    if((fd=open(argv[2],O_RDONLY)) != -1)
+    char fn[10], pat[10], temp[200];
+    FILE *fp;
+    printf("\n Enter file name : ");
+    scanf("%s", fn);
+    printf("Enter the pattern: ");
+    scanf("%s", pat);
+    fp = fopen(fn, "r");
+    while (!feof(fp))
     {
-        while((r=read(fd,&temp,sizeof(char)))!= 0)
-        {
-            if(temp!='\n')
-            {
-                line[j]=temp;
-                j++;
-            }
-            else
-            {
-                if(strstr(line,argv[1])!=NULL){
-										count++;
-                    printf("%s\n",line);
-									}
-								
-										
-                memset(line,0,sizeof(line));
-                j=0;
-            }
-
-        }
-    }   
-}
-
-main(int argc,char *argv[])
-{
-    struct stat stt;
-    if(argc==3)
-    {
-        if(stat(argv[2],&stt)==0){
-				match_pattern(argv);
-				printf("Occurences:  %d",count);
-}
-            
-
-        else 
-        {
-            perror("stat()");
-            exit(1);
-        }
+        fgets(temp, sizeof(fp), fp);
+        if (strcmp(temp, pat))
+            printf("%s", temp);
     }
+    fclose(fp);
+    return 1;
 }
