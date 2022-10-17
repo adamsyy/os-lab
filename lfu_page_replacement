@@ -1,0 +1,59 @@
+#include<stdio.h>
+int main()
+{
+    int f,p;
+    int pg[50],fr[100],hit=0,count[50],time[50];
+    int i,j,page,flag,least,mintime,temp;
+    printf("enter no of frames");
+    scanf("%d",&f);
+    printf("enter no of pages");
+    scanf("%d",&p);
+    for(i=0;i<f;i++){
+        fr[i]=-1;
+    }
+
+    for(i=0;i<50;i++){
+        count[i]=0;
+    }
+
+    printf("enter reference string");
+    for(i=0;i<p;i++){
+    scanf("%d",&pg[i]);
+    }
+
+    printf("/n");
+
+    for(i=0;i<p;i++){
+        count[pg[i]]++;
+        time[pg[i]]=i;
+        flag=1;
+        least=fr[0];
+
+        for(j=0;j<f;j++){
+            if(fr[j]==-1 || fr[j]=pg[i]){
+                if(fr[j]!=-1){
+                    hit++;
+                }
+                flag=0;
+                fr[j]=pg[i];
+                break;
+            }
+
+
+        }
+        if(flag){
+            mintime=50;
+            for(j=0;j<f;j++){
+                if(count[fr[j]]==count[least] && time[fr[j]]<mintime){
+                    temp=j;
+                    mintime=time[fr[j]];
+                }
+            }
+            count[fr[temp]]=0;
+            fr[temp]=pg[i];
+        }
+        for(j=0;i<f;i++){
+            printf("%d",fr[j])
+        }
+    }
+}
